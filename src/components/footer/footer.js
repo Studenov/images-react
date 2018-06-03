@@ -1,12 +1,7 @@
 import React from 'react';
 
-export default class Footer extends React.Component{
-
-    render(){
-        return(
-                <footer className='footer_block'>
-                    <p>&#169; Студенов Роман 2018</p>
-                </footer>
-        );
-    }
-}
+export default(props) => (
+    <footer className='footer_block'>
+        <p className='footer_block_p'>&#169; Студенов Роман 2018</p>
+    </footer>
+)

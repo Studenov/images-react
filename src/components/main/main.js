@@ -3,7 +3,7 @@ import HeaderImg from '../../images/cat.jpg';
 import Images1 from '../../images/images1.jpg';
 import Images2 from '../../images/images2.jpg';
 import Images3 from '../../images/images3.jpg';
-import ImagesBlock from './imagesBlock';
+import ImagesBlock from '../common/imagesBlock';
 
 export default class Main extends React.Component{
 
@@ -42,37 +42,35 @@ export default class Main extends React.Component{
     }
     
     modalWindow(){
-        let modal = document.getElementById('modal');
-            modal.style.display = 'block';
+        const modal = document.getElementById('modal');
+              modal.style.display = 'block';
     }
     closedModal(){
-        let modal = document.getElementById('modal');
-            modal.style.display = 'none';
+        const modal = document.getElementById('modal');
+              modal.style.display = 'none';
     }
 
     newImage(){
-        let urlImg = this.state.valueUrl;
-        let titleImg = this.state.valueTitle;
-        if((urlImg && titleImg) !== ''){
+        const {valueUrl, valueTitle} = this.state
+        if((valueUrl && valueTitle) !== ''){
             let newArr = this.state.images;
-                newArr.push({src: urlImg, title: titleImg});
-                this.setState({images: newArr, valueUrl: '', valueTitle: ''});
-                this.closedModal();
+                newArr.push({src: valueUrl, title: valueTitle});
+                this.setState({images: newArr, valueUrl: '', valueTitle: ''}, this.closedModal);
         } else {
             alert('Нужно заполнить все поля!');
         }
     }
 
     delImages(index){
-        let images = this.state.images;
-            images.splice(index, 1);
-            this.setState({images});
+        const images = this.state.images;
+              images.splice(index, 1);
+              this.setState({images});
     }
 
     render(){
 
         let img = this.state.images.map((pic, index) => {
-            return <ImagesBlock key={index} {...pic} delImages={this.delImages.bind(this, index)}/>
+            return <ImagesBlock key={pic.title} src={pic.src} title={pic.title} delImages={this.delImages.bind(this, index)}/>
         });
 
         return(
@@ -80,13 +78,13 @@ export default class Main extends React.Component{
                     <button onClick={() => {this.modalWindow()}} className='btn_add_img'>Добавить картинку</button>
                     {img}
                     <div className='modal_block' id='modal'>
-                        <div className='fog'></div>
+                        <div className='fog' />
                         <div className='inputs_block'>
-                            <p>Новая картинка</p>
-                            <input id='url' type='text' value={this.state.valueUrl} onChange={this.handleChangeUrl} placeholder='URL' required/>
-                            <input id='title' type='text' value={this.state.valueTitle} onChange={this.handleChangeTitle} placeholder='Title' required/>
-                            <button onClick={() => {this.closedModal()}}>Закрыть</button>
-                            <button onClick={() => {this.newImage()}}>Загрузить</button>
+                            <p className='inputs_block_p'>Новая картинка</p>
+                            <input id='url' type='text' value={this.state.valueUrl} onChange={this.handleChangeUrl} placeholder='URL' required className='inputs_block_input'/>
+                            <input id='title' type='text' value={this.state.valueTitle} onChange={this.handleChangeTitle} placeholder='Title' required className='inputs_block_input'/>
+                            <button onClick={() => {this.closedModal()}} className='inputs_block_btn'>Закрыть</button>
+                            <button onClick={() => {this.newImage()}} className='inputs_block_btn'>Загрузить</button>
                         </div> 
                     </div>
                 </main>

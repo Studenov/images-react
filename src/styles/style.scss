@@ -16,23 +16,23 @@ body{
     width: 100%;
     height: 120px;
     border-bottom: 1px solid black;
-    img{
+    .header_block_img{
         vertical-align: middle;
         margin: 10px 0 0 25px;
         border-radius: 100px;
         border: 1px solid black;
     }
-    p{
+    .header_block_p{
         display: inline-block;
         margin: 0 0 0 25px;
         font-size: 25px;
     }
     @media all and (max-width: 1000px) {
         height: 50px;
-        img{
+        .header_block_img{
             display: none;
         }
-        p{
+        .header_block_p{
             display: block;
             margin: 20px 0 0 0;
             text-align: center;
@@ -65,16 +65,16 @@ body{
     .img_block{
         width: 100%;
         margin: 20px 0;
-        div{
+        .img_block_div{
             width: 99.9%;
             height: 50px;
             border: 1px solid black;
-            p{
+            .img_block_p{
                 float: left;
                 margin: 15px 20px;
                 font-size: 15px;
             }
-            button{
+            .img_block_button{
                 float: right;
                 margin: 15px 20px;
                 border: none;
@@ -86,7 +86,7 @@ body{
                 color: red;
             }
         }
-        img{
+        .img_block_images{
             width: 100%;
         }
     }
@@ -96,13 +96,13 @@ body{
     width: 100%;
     height: 50px;
     border-top: 1px solid black;
-    p{
+    .footer_block_p{
         font-size: 20px;
         text-align: center;
     }
     @media all and (max-width: 1000px) {
         height: 50px;
-        p{
+        .footer_block_p{
             margin: 20px 0 0 0;
             text-align: center;
             font-size: 15px;
@@ -136,12 +136,12 @@ body{
         width: 350px;
         padding: 0px;
         margin-left: -170px;
-        p{
+        .inputs_block_p{
             text-align: center;
             font-size: 20px;
             margin: 20px 0;
         }
-        input{
+        .inputs_block_input{
             display: block;
             margin: 10px auto;
             padding: 0 0 0 10px;
@@ -151,7 +151,7 @@ body{
             font-size: 15px;
             outline: none;
         }
-        button{
+        .inputs_block_btn{
             display: block;
             float: left;
             border: 1px solid red;
@@ -171,7 +171,7 @@ body{
                 float: none;
             }
         }
-        button:last-child{
+        .inputs_block_btn:last-child{
             float: right;
             border-color:  rgb(22, 189, 22);
             color:  rgb(22, 189, 22);
