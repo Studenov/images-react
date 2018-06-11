@@ -21,7 +21,7 @@ export default class Main extends React.Component{
         let images = fetchImages();
         console.log(images, '2');
 
-        this.props.dispatch(fetchImages());
+        this.props.dispatch(images);
 
         console.log(this.props, '3');
 
