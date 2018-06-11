@@ -19,18 +19,13 @@ export default class Main extends React.Component{
         super(...arguments);
 
         let images = fetchImages();
-        console.log(images, '2');
-
         this.props.dispatch(images);
-
-        console.log(this.props, '3');
 
     }
 
     render(){
 
         if(!this.props.images.length){
-            console.log(this.props.images, 'hello');
             return null;
         } 
 
