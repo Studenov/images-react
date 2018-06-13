@@ -1,7 +1,14 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {fetchImages, addImages, deleteImages} from '../actions/imagesActions';
 import HeaderImg from '../../images/cat.jpg';
 import ImagesBlock from '../common/imagesBlock';
+
+@connect((store) => {
+    return {
+        images: store.images.images, 
+    }
+})
 
 export default class MainImages extends React.Component{
 
@@ -32,30 +39,55 @@ export default class MainImages extends React.Component{
               modal.style.display = 'block';
     }
     closedModal(){
+        const {valueUrl, valueTitle} = this.state;
         const modal = document.getElementById('modal');
-              modal.style.display = 'none';
+        let inputURL = document.getElementById('url');
+        let inputTitle = document.getElementById('title');
+            inputURL.style.borderColor = 'rgb(110, 110, 110)';
+            inputTitle.style.borderColor = 'rgb(110, 110, 110)';
+            this.setState({valueUrl: '', valueTitle: ''});
+            modal.style.display = 'none'
     }
 
     newImage(){
-        const {valueUrl, valueTitle} = this.state
-        if((valueUrl && valueTitle) !== ''){
-            let newArr = this.state.images;
-                newArr.push({src: valueUrl, title: valueTitle});
-                this.setState({images: newArr, valueUrl: '', valueTitle: ''}, this.closedModal);
+        const {valueUrl, valueTitle} = this.state;
+        let RegURL = /(^https?:\/\/)?[a-z0-9~_\-\.]+\.(jpg|png|gif|jpeg)/i;
+        let RegTitle = /([A-Za-zА-Яа-яЁё0-9-]+)/i;
+        let testUrl, testTitle, inputURL, inputTitle;
+            testUrl = RegURL.test(valueUrl);
+            testTitle = RegTitle.test(valueTitle);
+            inputURL = document.getElementById('url');
+            inputTitle = document.getElementById('title');
+        if(testUrl && testTitle){
+            let url = {src: valueUrl, title: valueTitle}
+            let images = addImages(url);
+                this.props.dispatch(images);
+                this.setState({valueUrl: '', valueTitle: ''}, this.closedModal);
         } else {
-            alert('Нужно заполнить все поля!');
+            switch (true) {
+                case testUrl: 
+                    inputTitle.style.borderColor = 'red';
+                    alert('Нужно заполнить поле title!');
+                    break;
+                case testTitle: 
+                    inputURL.style.borderColor = 'red';
+                    alert('Нужно заполнить поле url!');
+                    break;
+                default: 
+                    inputURL.style.borderColor = 'red';
+                    inputTitle.style.borderColor = 'red';
+                    alert('Нужно заполнить все поля!');
+                    break;
+            }
         }
     }
 
     delImages(index){
-        const images = this.state.images;
-              images.splice(index, 1);
-              this.setState({images});
+        let images = deleteImages(index);
+            this.props.dispatch(images);
     }
 
     render(){
-
-        console.log(this.props.images);
         
         let img = this.props.images.map((pic, index) => {
            return <ImagesBlock key={pic.title} src={pic.src} title={pic.title} delImages={this.delImages.bind(this, index)}/>

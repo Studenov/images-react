@@ -6,8 +6,7 @@ import MainImages from './imagesMain';
 
 @connect((store) => {
     return {
-        images: store.images.images,
-        is_fetching: store.images.is_fetching 
+        images: store.images.images, 
     }
 })
 
@@ -25,19 +24,11 @@ export default class Main extends React.Component{
 
     render(){
 
-        if(!this.props.images.length){
-            return null;
-        } 
-
         return( 
                 <main className='main_block'>
                 {
                     (!this.props.children) ?
-                        (
-                            this.props.is_fetching ?
-                                'Идет загрузка данных...' :
-                                <MainImages images={this.props.images} />
-                        )
+                        <MainImages images={this.props.images} />
                         :
                         (this.props.children)
                 }

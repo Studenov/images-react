@@ -1,4 +1,4 @@
-import {FETCH_IMAGES} from '../constants/images';
+import {FETCH_IMAGES, ADD_IMAGES, DELETE_IMAGES} from '../constants/images';
 import Images1 from '../../images/images1.jpg';
 import Images2 from '../../images/images2.jpg';
 import Images3 from '../../images/images3.jpg';
@@ -26,14 +26,14 @@ export function fetchImages(){
 
 export function addImages(url) {
     return {
-        type: 'ADD_IMAGES',
+        type: ADD_IMAGES,
         payload: url
     }
 }
 
 export function deleteImages(index) {
     return {
-        type: 'DELETE_IMAGES',
+        type: DELETE_IMAGES,
         payload: index
     }
 }
