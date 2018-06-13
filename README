@@ -1,0 +1,7 @@
+                          Images React-Redux
+
+  Как запустить
+  -----------
+
+  1) npm i
+  2) webpack -w
