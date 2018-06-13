@@ -66,11 +66,13 @@ export default class MainImages extends React.Component{
         } else {
             switch (true) {
                 case testUrl: 
+                    inputURL.style.borderColor = 'rgb(110, 110, 110)';
                     inputTitle.style.borderColor = 'red';
                     alert('Нужно заполнить поле title!');
                     break;
                 case testTitle: 
                     inputURL.style.borderColor = 'red';
+                    inputTitle.style.borderColor = 'rgb(110, 110, 110)';
                     alert('Нужно заполнить поле url!');
                     break;
                 default: 
