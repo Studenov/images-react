@@ -69,22 +69,34 @@ body{
             width: 99.9%;
             height: 50px;
             border: 1px solid black;
-            .img_block_p{
+            .img_block_left{
                 float: left;
-                margin: 15px 20px;
-                font-size: 15px;
+                width: 50%;
+                .img_block_p{
+                    float: left;
+                    margin: 15px 20px;
+                    font-size: 15px;
+                    text-overflow: ellipsis;
+                    width: 100%;
+                    overflow: hidden;
+                }
             }
-            .img_block_button{
+            .img_block_right{
                 float: right;
-                margin: 15px 20px;
-                border: none;
-                outline: none;
-                cursor: pointer;
-                background: none;
-                font-family: 'Gotham Bold';
-                font-size: 15px;
-                color: red;
+                width: 50%;
+                .img_block_button{
+                    float: right;
+                    margin: 15px 20px;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                    background: none;
+                    font-family: 'Gotham Bold';
+                    font-size: 15px;
+                    color: red;
+                }
             }
+            
         }
         .img_block_images{
             width: 100%;
